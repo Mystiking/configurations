@@ -14,7 +14,6 @@
 # set $tag1 "code"
 # set $tag2 "interwebs"
 # set $tag3 "random"
-# set $tag10 "pr0n"
 # set $tag9 "trashcan"
 
 # Disable mousepad
@@ -22,20 +21,22 @@
 bindsym $mod+m exec xinput set-prop 10 "Device Enabled" 0
 
 bindsym $mod+Shift+m exec xinput set-prop 10 "Device Enabled" 1
+
 # Sets the keymap layout to danish
 
 exec setxkbmap dk
 
+# "mod button" is windows button
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1 
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-#font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -172,7 +173,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+    status_command i3status
 	position top
 }
 
@@ -184,14 +185,18 @@ exec --no-startup-id nitrogen --restore
 
 exec setxkbmap dk
 
-# Mute / umute sound
+# Control sound level
 
-bindsym $mod+XF86AudioMute exec amixer -D set Master Playback Switch toggle
-bindsym $mod+Shift+XF86AudioMute exec amixer -q set Master unmute
+bindsym $mod+F1 exec /home/max/scripts/sound.sh 
+bindsym $mod+F3 exec amixer -D pulse sset Master 5%+
+bindsym $mod+F2 exec amixer -D pulse sset Master 5%-
 
 # Make alias for NuSMV
 exec_always alias NuSMV="Logic/NuSMV/NuSMV-2.5.4-i386-redhat-linux-gnu/bin/NuSMV"
 
 # Enter lock screen
 
-bindsym $mod+Shift+n exec i3lock -p win -u -t -i ~/pictures/windows-desktop-wallpaper.png
+bindsym $mod+Shift+n exec i3lock -p win -t -i ~/pictures/windows-desktop-wallpaper.png
+
+# Make sure 1/2 key is escape on startup
+exec_always xmodmap -e "keycode 49 = Escape"
