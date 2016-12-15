@@ -136,6 +136,7 @@ workspace 4 output eDP1
 workspace 5 output VGA1
 workspace 6 output VGA1
 workspace 7 output VGA1
+workspace 8 output VGA1
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -179,7 +180,7 @@ bar {
 
 # Add walpaper to i3
 
-exec --no-startup-id nitrogen --restore
+exec --no-startup-id nitrogen --no-recurse 
 
 # Change keyboard layout
 
@@ -187,7 +188,7 @@ exec setxkbmap dk
 
 # Control sound level
 
-bindsym $mod+F1 exec /home/max/scripts/sound.sh 
+bindsym $mod+F1 exec amixer -q -D pulse sset Master toggle
 bindsym $mod+F3 exec amixer -D pulse sset Master 5%+
 bindsym $mod+F2 exec amixer -D pulse sset Master 5%-
 
@@ -200,3 +201,8 @@ bindsym $mod+Shift+n exec i3lock -p win -t -i ~/pictures/windows-desktop-wallpap
 
 # Make sure 1/2 key is escape on startup
 exec_always xmodmap -e "keycode 49 = Escape"
+
+# Light settings
+bindsym $mod+F5 exec xbacklight -dec 10 
+bindsym $mod+F6 exec xbacklight -inc 10
+

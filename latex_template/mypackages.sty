@@ -1,0 +1,71 @@
+%\documentclass[11pt]{article}
+\usepackage[a4paper, hmargin={2.8cm, 2.8cm}, vmargin={2.5cm, 2.5cm}]{geometry}
+\usepackage{eso-pic} % \AddToShipoutPicture
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{stmaryrd}
+\usepackage[english]{babel}
+\usepackage{natbib}
+\usepackage[all]{xy}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{tabu}
+\usepackage{tabularx}
+\usepackage{wrapfig}
+\usepackage{dsfont}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{booktabs}
+\usepackage{lmodern}
+\usepackage[normalem]{ulem}
+\usepackage{url}
+\usepackage[font={small,md},justification=centering]{caption}
+\usepackage{subcaption} % til subfigure
+\usepackage{subfig}
+%\usepackage[final]{graphicx}
+\usepackage{enumitem} % til \begin{description}[labelindent=1cm]
+
+\usepackage{xcolor}
+
+\newcommand{\mybox}[2]{{\color{#1}\fbox{\normalcolor#2}}}
+\newcommand{\R}{\mathbb{R}}
+\usepackage{color, colortbl}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+
+
+%\usepackage{cite} % SKAL være udkommenteret, ellers virker bibtex ikke!!!! XXXX
+\usepackage{standalone}% Need standalone package
+\DeclareMathSymbol{*}{\mathbin}{symbols}{"01} % laver * til \cdot i mathmode
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FORSIDE!! XXXXX
+
+%% Change `ku-farve` to `nat-farve` to use SCIENCE's old colors or
+%% `natbio-farve` to use SCIENCE's new colors and logo.
+\def \ColourPDF {include/natbio-farve}
+
+%% Change `ku-en` to `nat-en` to use the `Faculty of Science` header
+\def \TitlePDF   {include/ku-en}  % University of Copenhagen
+
+\title{
+  \vspace{3cm}
+  \Huge{Overtitel} \\
+        \Large{Overskrift}
+}
+
+\author{
+    \Large{Max Kragballe Nielsen}
+  %\\ \texttt{andre vigtige informationer} \\
+}
+
+\date{
+    \today
+}
+% FORSIDE SLUT!! XXXXXX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
