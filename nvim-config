@@ -1,0 +1,240 @@
+set nocompatible              " be iMproved, required
+
+filetype plugin indent on
+" show existing tab with 4 spaces width
+set tabstop=4
+" when indenting with '>', use 4 spaces width
+set shiftwidth=4
+" On pressing tab, insert 4 spaces
+set expandtab
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.config/nvim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" Plugin 'vim-syntastic/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'L9'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
+Plugin 'exitface/synthwave.vim'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'jcf/vim-latex'
+Plugin 'ajmwagar/vim-deus'
+Plugin 'nerdypepper/vim-colors-plain'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'mattn/emmet-vim', { 'for': ['*html', '*css', 'vue'] }
+Plugin 'tpope/vim-repeat'
+Plugin 'godlygeek/tabular'
+Plugin 'lambdalisue/vim-manpager'
+Plugin 'scrooloose/nerdtree'
+" Plugin 'airblade/vim-gitgutter'
+" Plugin 'rust-lang/rust.vim'
+Plugin 'rhysd/open-pdf.vim'
+Plugin 'w0rp/ale'
+Plugin 'wellle/targets.vim'
+Plugin 'ervandew/supertab'
+Plugin 'andymass/vim-matchup'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'nerdypepper/agila.vim'
+Plugin 'posva/vim-vue'
+Plugin 'srcery-colors/srcery-vim'
+Plugin 'kristijanhusak/vim-multiple-cursors'
+Plugin 'rafi/awesome-vim-colorschemes'
+Plugin 'rainglow/vim'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" Set tabspacing to 4
+set expandtab sw=4 ts=4 ai
+set clipboard+=unnamedplus
+
+" Make esc jk
+
+inoremap <special> jk <ESC>
+vnoremap <special> jk <ESC>
+
+" Latex cycle through words
+"set iskeyword+=:
+" More Latex
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+" End of line with l
+nnoremap dl d$
+
+"colorscheme gruvbox
+syntax on
+set enc=utf-8
+
+" Latex binding
+noremap LL :! pdflatex main.tex<CR>
+
+" Autoremove whitespace
+autocmd BufWritePre * :%s/\s\+$//e
+
+augroup indents
+	autocmd!
+	autocmd FileType less,css,html setlocal ts=2 sts=2 sw=2 expandtab
+	autocmd FileType text,markdown setlocal expandtab
+	autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+augroup END
+
+
+augroup highlight_follows_vim
+	autocmd!
+	autocmd FocusGained * set cursorline
+	autocmd FocusLost * set nocursorline
+augroup END
+
+augroup mapppings
+	autocmd!
+	autocmd FileType less,css,html nnoremap <Leader>s viB:sort<cr>
+augroup END
+
+augroup restorecursor
+	autocmd BufReadPost *
+				\ if line("'\"") > 1 && line("'\"") <= line("$") |
+				\   execute "normal! g`\"" |
+				\ endif
+augroup END
+
+augroup nerdtree
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+
+
+" general settings
+set nobackup
+set nowritebackup
+set noswapfile " get rid of swapfiles everywhere
+set dir=/tmpset
+
+" Enable more colors
+set termguicolors
+
+syntax on
+
+set omnifunc=syntaxcomplete#Complete
+set completefunc=LanguageClient#complete
+set list
+set cursorline
+filetype indent on
+set laststatus=2
+set nowrap
+set noshowmode
+set listchars=tab:│\ ,nbsp:␣,trail:∙,extends:>,precedes:<,eol:¬
+set fillchars=vert:\│
+set scrolloff=3
+set ignorecase
+set smartcase
+set sidescroll=40
+set incsearch
+set hlsearch
+set undofile
+set undodir=~/tmp
+set path+=**
+set inccommand=split
+set backspace=indent,eol,start
+set hidden
+set wildmenu
+set foldmethod=manual
+set complete=.,w,b,i,u,t,
+set background=dark
+
+autocmd BufEnter * colorscheme bold
+autocmd BufEnter *.py colorscheme gruvbox
+autocmd BufEnter *.tex colorscheme gruvbox
+set mouse=a
+
+set wildignore+=.git,.hg,.svn
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.rbc,*.class
+set wildignore+=*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
+set wildignore+=*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg
+set wildignore+=*.mp3,*.oga,*.ogg,*.wav,*.flac
+set wildignore+=*.eot,*.otf,*.ttf,*.woff
+set wildignore+=*.doc,*.pdf,*.cbr,*.cbz
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
+set wildignore+=*.swp,.lock,.DS_Store,._*
+
+
+
+set shiftwidth=4     " indent = 4 spaces
+
+
+" statusline
+let g:currentmode={
+			\ 'n'  : 'NORMAL ',
+			\ 'no' : 'N·OPERATOR PENDING ',
+			\ 'v'  : 'VISUAL ',
+			\ 'V'  : 'V·LINE ',
+			\ '' : 'V·BLOCK ',
+			\ 's'  : 'SELECT ',
+			\ 'S'  : 'S·LINE ',
+			\ '' : 'S·BLOCK ',
+			\ 'i'  : 'INSERT ',
+			\ 'R'  : 'REPLACE ',
+			\ 'Rv' : 'V·REPLACE ',
+			\ 'c'  : 'COMMAND ',
+			\ 'cv' : 'VIM EX ',
+			\ 'ce' : 'EX ',
+			\ 'r'  : 'PROMPT ',
+			\ 'rm' : 'MORE ',
+			\ 'r?' : 'CONFIRM ',
+			\ '!'  : 'SHELL ',
+			\ 't'  : 'TERMINAL '}
+hi PrimaryBlock ctermfg=00 ctermbg=02
+hi SecondaryBlock ctermfg=07 ctermbg=11
+hi Blanks ctermfg=8 ctermbg=00
+
+highlight EndOfBuffer ctermfg=black ctermbg=black
+
+set statusline=
+set statusline+=%#PrimaryBlock#
+set statusline+=\ %{g:currentmode[mode()]}
+set statusline+=%#SecondaryBlock#
+set statusline+=%#Blanks#
+set statusline+=\ %t\
+set statusline+=%(%m%)
+set statusline+=%=
+set statusline+=%#SecondaryBlock#
+set statusline+=\ Ln
+set statusline+=\ %l
+set statusline+=,Col
+set statusline+=\ %c\
+set statusline+=%#PrimaryBlock#
+set statusline+=\ %Y\
+
+" Stop myself from fucking up :)
+:command! WQ wq
+:command! Wq wq
+:command! W w
+:command! Q q
+
+" Maximum line length
+set colorcolumn=100
+set textwidth=100
+set wrap
+
+" Line numbers
+set number
+
+" Spell checking in vim to the command
+noremap SS :setlocal spell! spelllang=en_gb<CR>
+
+" Open NERDtree
+map TT :NERDTreeToggle<CR>
+
+" Enable Syntastic syntax checking
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
